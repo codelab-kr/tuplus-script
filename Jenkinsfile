@@ -12,6 +12,7 @@ node {
                     sh "git config --global user.email master@code-lab.kr"
                     sh "git config --global user.name codelab-kr"
                     sh "git checkout feature"
+                    sh "git config pull.ff only"
                     sh "git pull"
                     sh "cat ./deploy/${SERVICE}.yaml"
                     sh "sed -i 's+cnqphqevfxnp/${SERVICE}.*+cnqphqevfxnp/${SERVICE}:${DOCKERTAG}+g' ./deploy/${SERVICE}.yaml"
