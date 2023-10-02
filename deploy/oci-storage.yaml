@@ -32,6 +32,16 @@ spec:
           value: cnqphqevfxnp
         - name: BUCKET_NAME
           value: tuplus-bucket
+        - name: CONFIG
+          valueFrom:
+            secretKeyRef:
+              name: oci-config-secret
+              key: CONFIG
+        - name: PRIVATE_KEY
+          valueFrom:
+            secretKeyRef:
+              name: oci-config-secret
+              key: PRIVATE_KEY          
 ---
 apiVersion: v1
 kind: Service
