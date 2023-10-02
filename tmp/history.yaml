@@ -1,0 +1,48 @@
+#
+# To deploy:
+#
+# kubectl apply -f scripts/deploy.yaml
+#
+#
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: history
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: history
+  template:
+    metadata:
+      labels:
+        app: history
+    spec:
+      imagePullSecrets:
+      - name: ocir-registry-secret
+      containers: 
+      - name: history
+        image: ap-seoul-1.ocir.io/cnqphqevfxnp/history:latest
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: PORT
+          value: "4000"
+        - name: DBHOST
+          value: mongodb://mongodb:27017
+        - name: DBNAME
+          value: history
+        - name: RABBIT
+          value: amqp://test:test@rabbit:5672
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: history
+spec:
+  selector:
+    app: history
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 4000

@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: video-storage
+  name: video-storage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: video-storage
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: video-storage
+    spec:
+      imagePullSecrets:
+      - name: ocir-registry-secret
+      containers:
+      - image: ap-seoul-1.ocir.io/cnqphqevfxnp/azure-storage:latest
+        name: video-storage
+        imagePullPolicy: Always
+        env:
+        - name: PORT
+          value: "80"
+        - name: STORAGE_ACCOUNT_NAME
+          value: "codelabmaster"
+        - name: STORAGE_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: storage-azure-secret
+              key: STORAGE_ACCESS_KEY             
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: video-storage
+  name: video-storage
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: video-storage
