@@ -21,7 +21,7 @@ spec:
         imagePullPolicy: IfNotPresent
         env:
         - name: PORT
-          value: "4000"
+          value: "80"
         - name: RABBIT
           value: amqp://test:test@rabbit:5672
 ---
@@ -36,4 +36,4 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 4000
+      targetPort: 80

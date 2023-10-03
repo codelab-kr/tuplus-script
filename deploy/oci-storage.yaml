@@ -1,9 +1,3 @@
-#
-# To deploy:
-#
-# kubectl apply -f scripts/deploy.yaml
-#
-#
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -25,23 +19,13 @@ spec:
         image: ap-seoul-1.ocir.io/cnqphqevfxnp/oci-storage:7
         env:
         - name: PORT
-          value: "4000"
+          value: "80"
         - name: RABBIT
           value: amqp://test:test@rabbit:5672
         - name: NAMESPACE
           value: cnqphqevfxnp
         - name: BUCKET_NAME
           value: tuplus-bucket
-        - name: CONFIG
-          valueFrom:
-            secretKeyRef:
-              name: oci-config-secret
-              key: CONFIG
-        - name: PRIVATE_KEY
-          valueFrom:
-            secretKeyRef:
-              name: oci-config-secret
-              key: PRIVATE_KEY          
 ---
 apiVersion: v1
 kind: Service
@@ -54,4 +38,4 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 4000
+      targetPort: 80
