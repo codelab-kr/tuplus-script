@@ -30,7 +30,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: storage-azure-secret
-              key: STORAGE_ACCESS_KEY             
+              key: STORAGE_ACCESS_KEY
 ---
 apiVersion: v1
 kind: Service
