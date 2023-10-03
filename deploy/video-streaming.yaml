@@ -16,7 +16,7 @@ spec:
       imagePullSecrets:
       - name: ocir-registry-secret
       containers:
-      - image: ap-seoul-1.ocir.io/cnqphqevfxnp/video-streaming:17
+      - image: ap-seoul-1.ocir.io/cnqphqevfxnp/video-streaming:2
         name: video-streaming
         imagePullPolicy: IfNotPresent
         env:
