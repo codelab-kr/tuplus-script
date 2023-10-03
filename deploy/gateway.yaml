@@ -23,12 +23,9 @@ spec:
       containers: 
       - name: gateway
         image: ap-seoul-1.ocir.io/cnqphqevfxnp/gateway:3
-        imagePullPolicy: IfNotPresent
-        ports:
-        - containerPort: 4000
         env:
         - name: PORT
-          value: "4000"
+          value: "80"
         - name: RABBIT
           value: amqp://test:test@rabbit:5672
 ---
@@ -43,5 +40,4 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 4000
-      # nodePort: 31600
+      targetPort: 80
