@@ -18,7 +18,7 @@ spec:
       imagePullSecrets:
       - name: ocir-registry-secret
       containers:
-      - image: ap-seoul-1.ocir.io/cnqphqevfxnp/azure-storage:latest
+      - image: ap-seoul-1.ocir.io/cnqphqevfxnp/azure-storage:2
         name: video-storage
         imagePullPolicy: Always
         env:
