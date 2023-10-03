@@ -16,7 +16,7 @@ spec:
       imagePullSecrets:
       - name: azure-registry-secret
       containers:
-      - image: tuplus.azurecr.io/video-streaming:2
+      - image: tuplus.azurecr.io/video-streaming:3
         name: video-streaming
         env:
         - name: PORT
