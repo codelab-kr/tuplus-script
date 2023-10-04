@@ -18,7 +18,7 @@ spec:
       imagePullSecrets:
       - name: azurecr-registry-secret
       containers:
-      - image: tuplus.azurecr.io/azure-storage:2
+      - image: tuplus.azurecr.io/azure-storage:6
         name: video-storage
         imagePullPolicy: Always
         env:
