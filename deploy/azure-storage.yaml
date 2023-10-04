@@ -25,7 +25,10 @@ spec:
         - name: PORT
           value: "80"
         - name: STORAGE_ACCOUNT_NAME
-          value: "codelabmaster"
+          valueFrom:
+            secretKeyRef:
+              name: storage-azure-secret
+              key: STORAGE_ACCOUNT_NAME
         - name: STORAGE_ACCESS_KEY
           valueFrom:
             secretKeyRef:
