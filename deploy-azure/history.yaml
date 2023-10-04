@@ -16,7 +16,7 @@ spec:
       - name: azurecr-registry-secret
       containers: 
       - name: history
-        image: tuplus.azurecr.io/history:4
+        image: tuplus.azurecr.io/history:1
         imagePullPolicy: IfNotPresent
         env:
         - name: PORT
