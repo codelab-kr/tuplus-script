@@ -16,7 +16,7 @@ spec:
       - name: azurecr-registry-secret
       containers: 
       - name: gateway
-        image: tuplus.azurecr.io/gateway:4
+        image: tuplus.azurecr.io/gateway:2
         env:
         - name: PORT
           value: "80"
