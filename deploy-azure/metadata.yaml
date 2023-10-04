@@ -16,7 +16,7 @@ spec:
       - name: azurecr-registry-secret
       containers: 
       - name: metadata
-        image: tuplus.azurecr.io/metadata:5
+        image: tuplus.azurecr.io/metadata:1
         imagePullPolicy: IfNotPresent
         env:
         - name: PORT
