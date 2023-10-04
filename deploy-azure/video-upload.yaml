@@ -16,7 +16,7 @@ spec:
       - name: azurecr-registry-secret
       containers: 
       - name: video-upload
-        image: tuplus.azurecr.io/video-upload:5
+        image: tuplus.azurecr.io/video-upload:1
         imagePullPolicy: IfNotPresent
         env:
         - name: PORT
