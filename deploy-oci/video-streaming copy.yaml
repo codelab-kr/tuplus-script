@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: video-streaming
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: video-streaming
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: video-streaming
+    spec:
+      imagePullSecrets:
+      - name: azure-registry-secret
+      containers:
+      - image: tuplus.azurecr.io/video-streaming:2
+        name: video-streaming
+        env:
+        - name: PORT
+          value: "80"
+        - name: RABBIT
+          value: amqp://test:test@rabbit:5672
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: video-streaming
+spec:
+  selector:
+    app: video-streaming
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
