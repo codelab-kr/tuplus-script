@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gateway-staging
+  namespace: tuplus
+  annotations: 
+    acme.cert-manager.io/http01-ingress-class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    nginx.ingress.kubernetes.io/proxy-body-size: 999m
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - staging.code-lab.kr
+    secretName: codelab-staging-tls
+  rules:
+  - host: staging.code-lab.kr
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: gateway
+            port:
+              number: 80
